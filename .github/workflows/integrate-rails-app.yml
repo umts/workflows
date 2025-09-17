@@ -9,14 +9,14 @@ jobs:
         with:
           bundler-cache: true
       - run: bundle exec brakeman --no-pager
-  rubocop:
+  haml-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: bundle exec rubocop
+      - run: bundle exec haml-lint
   rspec:
     runs-on: ubuntu-latest
     services:
@@ -40,3 +40,11 @@ jobs:
           cache: npm
       - run: bin/rails db:create db:schema:load test:prepare
       - run: bundle exec rspec
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bundle exec rubocop
