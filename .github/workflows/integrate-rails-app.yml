@@ -17,6 +17,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
+      - run: npm ci
       - run: npx eslint
   haml-lint:
     runs-on: ubuntu-latest
@@ -47,6 +48,7 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
+      - run: npm ci
       - run: bin/rails db:create db:schema:load test:prepare
       - run: bundle exec rspec
   rubocop:
@@ -65,4 +67,5 @@ jobs:
         with:
           node-version-file: .node-version
           cache: npm
+      - run: npm ci
       - run: npx stylelint **/*.css **/*.scss
