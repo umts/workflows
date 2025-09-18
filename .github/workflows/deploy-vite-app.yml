@@ -1,0 +1,24 @@
+on:
+  workflow_call:
+concurrency:
+  group: pages
+  cancel-in-progress: true
+jobs:
+  pages:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: ./dist
+      - uses: actions/deploy-pages@v4
+
