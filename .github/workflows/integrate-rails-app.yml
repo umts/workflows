@@ -38,7 +38,7 @@ jobs:
           - 3306:3306
     env:
       RAILS_ENV: test
-      DATABASE_URL: mysql2://root@127.0.0.1:3306/rails_test
+      DATABASE_URL: trilogy://root@127.0.0.1:3306/rails_test
     steps:
       - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
